@@ -1,8 +1,10 @@
 package com.linder.shop.controller;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,10 +42,15 @@ public class EstadoController {
 	}
 	//delete
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void>excluir(@PathVariable("id") Long id) {
-		estadoService.delete(id);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<Object>excluir(@PathVariable("id") Long id) {
+		Optional<Estado> estadoOptional = estadoService.findById(id);
 		
+		if(!estadoOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Estado Nao Encontrado");
+		}
+		
+		estadoService.delete(id);
+		return ResponseEntity.status(HttpStatus.OK).body("Estado Deletado com Sucesso");
 	}
 	
 }
