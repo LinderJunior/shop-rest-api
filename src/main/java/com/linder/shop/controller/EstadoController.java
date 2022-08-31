@@ -33,12 +33,12 @@ public class EstadoController {
 	public Estado salvar(@RequestBody Estado estado) {		
 		return estadoService.salvar(estado);
 	}
-	
+	//update 
 	@PutMapping("/atualizar")
 	public Estado atualizar(@RequestBody Estado estado) {
 		return estadoService.salvar(estado);
 	}
-	
+	//delete
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void>excluir(@PathVariable("id") Long id) {
 		estadoService.delete(id);
