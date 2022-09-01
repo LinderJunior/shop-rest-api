@@ -25,7 +25,6 @@ public Estado salvar(Estado estado) {
 	return estadoNovo;
  }
 
-
 public Estado atualizar(Estado estado) {	
 	estado.setDataAtualizacao(new Date());	
 	return estadoRepository.save(estado);
