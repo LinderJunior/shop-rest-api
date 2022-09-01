@@ -51,6 +51,15 @@ public class EstadoController {
 		estadoService.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Estado Deletado com Sucesso");
 	}
-	
+		
+	@GetMapping("/{id}")
+	public ResponseEntity<Object>findByOne(@PathVariable("id") Long id){
+		Optional<Estado>estadoOptional = estadoService.findById(id);
+		if(!estadoOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Estado nao econtrado");
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(estadoOptional.get());
+	}
+
 }
 	

@@ -14,6 +14,7 @@ public class EstadoService {
 @Autowired
 EstadoRepository estadoRepository;
 
+//Listar
 public List<Estado>listaEstado(){
 	return estadoRepository.findAll();		
 }
@@ -24,17 +25,17 @@ public Estado salvar(Estado estado) {
 	Estado estadoNovo = estadoRepository.save(estado);
 	return estadoNovo;
  }
-
+//Atualizar
 public Estado atualizar(Estado estado) {	
 	estado.setDataAtualizacao(new Date());	
 	return estadoRepository.save(estado);
  }
-
+//Delete
 public void delete(Long id) {
 	Estado estado = estadoRepository.findById(id).get();
     estadoRepository.delete(estado);
 }
-
+//getOne
 public Optional<Estado>findById(Long id){
 	return estadoRepository.findById(id);
 }
