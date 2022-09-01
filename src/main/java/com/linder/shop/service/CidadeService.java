@@ -14,28 +14,28 @@ public class CidadeService {
 
 	@Autowired
 	CidadeRepository cidadeRepository;
-	
+	//getAll
 	public List<Cidade>listarCidade(){
 		return cidadeRepository.findAll();	
 	}
-	
+	//save
 	public Cidade salvar(Cidade cidade) {
 		cidade.setDataCricao(new Date());
 		Cidade cidadeNova = cidadeRepository.save(cidade);
 		return cidadeNova;
 	}
-	
+	//update
 	public Cidade atualizar(Cidade cidade) {
 		cidade.setDataCricao(new Date());
 		Cidade cidadeNova = cidadeRepository.save(cidade);
 		return cidadeNova;
 	}
-	
+	//delete
 	public void delete(Long id) {
 		Cidade cidade = cidadeRepository.findById(id).get();
 		cidadeRepository.delete(cidade);
 	}
-	
+	//findOne
 	public Optional<Cidade>findById(Long id){
 		return cidadeRepository.findById(id);
 	}

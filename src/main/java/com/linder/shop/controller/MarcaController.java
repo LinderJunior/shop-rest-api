@@ -15,17 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.linder.shop.model.Marca;
-import com.linder.shop.repository.EstadoRepository;
 import com.linder.shop.service.MarcaService;
 
 @RestController
 @RequestMapping("/marca")
 public class MarcaController {
-
 	
 	@Autowired
 	MarcaService marcaService;
-	
 	//GetAll
 	@GetMapping("/marcas")
 	public List<Marca>listar(){
@@ -36,13 +33,11 @@ public class MarcaController {
 	public Marca salvar(@RequestBody Marca marca) {
 		return marcaService.salvar(marca);
 	}
-	
 	//update
 	@PutMapping("/actualizar")
 	public Marca actualizar(@RequestBody Marca marca) {
 		return marcaService.salvar(marca);
 	}
-	
 	//Delete
 	@DeleteMapping("/{id}")
     public ResponseEntity<Object> excluir(@PathVariable("id") Long id){
@@ -53,4 +48,12 @@ public class MarcaController {
     	marcaService.deletar(id);
     	return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso");
     }
+	@GetMapping("/{id}")
+	public ResponseEntity<Object>buscarPorUm(@PathVariable("id") Long id){
+		Optional<Marca>marOptional =marcaService.findById(id);
+		if(!marOptional.isPresent()){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nao foi encontrado");
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(marOptional.get());
+	}
 }
