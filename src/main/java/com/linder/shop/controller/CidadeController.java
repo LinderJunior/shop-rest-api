@@ -52,4 +52,36 @@ public class CidadeController {
 		return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso");
 	}
 
+	@GetMapping("/{id}")
+	public ResponseEntity<Object>findByOne(@PathVariable("id") Long id){
+		Optional<Cidade> cidadeOptional = cidadeService.findById(id);
+		if(!cidadeOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.OK).body("Nao encontrado");
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(cidadeOptional.get());
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
